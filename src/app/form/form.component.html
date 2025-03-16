@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="card text-bg-primary mb-3 p-3">
+        <div class="card-header"><h1>Megasena</h1></div>
+      <h4 class="text-center my-3">Insira os 6 números sorteados:</h4>
+      <div class="input-group mb-3">
+        <input #numeroSorteado type="number" class="form-control" min="1" max="60" placeholder="Digite um número">
+        <button class="btn btn-warning" (click)="adicionarSorteado(numeroSorteado.valueAsNumber)">Adicionar</button>
+      </div>
+      <p class="text-white">Números sorteados: {{ numerosSorteados.join(', ') }}</p>
+      <h4 class="text-center my-3">Insira sua aposta (6 a 10 números):</h4>
+      <div class="input-group mb-3">
+        <input #numeroAposta type="number" class="form-control" min="1" max="60" placeholder="Digite um número">
+        <button class="btn btn-warning" (click)="adicionarAposta(numeroAposta.valueAsNumber)">Adicionar</button>
+      </div>
+      <p class="mt-2">Números apostados: {{ numerosApostados.join(', ') }}</p>
+    </div>
+  
+    <div class="text-center mt-3">
+      <button class="btn btn-warning" [disabled]="numerosSorteados.length !== 6 || numerosApostados.length < 6" (click)="verificarAcertos()">Verificar Acertos</button>
+    </div>
+  
+    <div *ngIf="acertos.length">
+      <h4>Acertos: <span class="badge bg-success">{{ acertos.join(', ') }}</span></h4>
+    </div>
+
+    <div class="text-center mt-3">
+      <button class="btn btn-primary" (click)="resetar()">Reiniciar</button>
+    </div>
+</div>
